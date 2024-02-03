@@ -153,14 +153,14 @@ async function postQuotation(dataQuotation) {
     return response
 }
 
-async function postEmail(template) {
+async function postEmail(template, email) {
     console.log(template)
     const response = await fetch(`${ur}/send/email`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ html: template })
+        body: JSON.stringify({ html: template, email: email })
     })
 
     return response

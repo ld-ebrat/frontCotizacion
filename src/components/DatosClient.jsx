@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
 import { useParams } from 'react-router-dom'
-import { postClient, postEmail, postQuotation, postQuotationProduct } from '../peticiones'
+import { getInfo, postClient, postEmail, postQuotation, postQuotationProduct } from '../peticiones'
 import { render } from '@react-email/render'
 import Email from './email'
 
@@ -9,7 +9,6 @@ import Email from './email'
 function DatosClient({ products, total }) {
     const userId = useParams()
     const [quotationId, setQuotationId] = useState()
-    console.log(products)
 
     const {
         register,
@@ -26,6 +25,7 @@ function DatosClient({ products, total }) {
     })
 
     const handleClient = (data) => {
+        getInfo(userId.user)
         postClient(data, userId.user).then(response => response.json())
             .then(data =>
                 postQuotation({ clientId: data.id, userId: userId.user, total }).then(res => res.json()
@@ -33,11 +33,12 @@ function DatosClient({ products, total }) {
                         products.forEach(elemnt => {
                             console.log(elemnt)
                             postQuotationProduct({ quotationId: data.id, productId: elemnt.id, amount: elemnt.count }).then(res => res.json(9))
-                                .then(data => console.log(data))
+                                .then(data => {
+                                    postEmail(render(<Email product={products} total={total} />), data.email).then(res => res.json()).then(data => console.log(data))
+                                })
                         })
                     }))
             )
-        postEmail(render(<Email product={products} total={total}/>)).then(res => res.json()).then(data => console.log(data))
     }
     return (
         <>
