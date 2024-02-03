@@ -16,15 +16,12 @@ import ProductCU from "./layout/ProductCU";
 import Product from "./components/Product";
 import ProtectRouterDesktop from "./components/ProtectRouterDesktop";
 import ProtectRouterProfile from "./components/ProtectRouterProfile";
+import ProtectRouterAdmin from "./components/ProtectRouterAdmin";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component:Home,
-    },
-    {
-        path: "/profileClient",
-        Component: perfilUserClient,
     },
     {
         path: "/profile/:user",
@@ -51,24 +48,6 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/perfilUser",
-        Component: PerfilUser,
-        children: [
-            {
-                path: "/perfilUser",
-                Component: Desktop,
-            },
-            {
-                path: "/perfilUser/category/:categoria",
-                Component: Products,
-            },
-            {
-                path: "/perfilUser/addproduct",
-                Component: ProductCU
-            }
-        ]
-    },
-    {
         path: "/login",
         Component:Login
     },
@@ -88,7 +67,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/admin",
-        Component: Admin,
+        Component: ProtectRouterAdmin,
         children: [
             {
                 path: "/admin/Guser",

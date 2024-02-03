@@ -24,36 +24,38 @@ function Login() {
 
     async function login() {
 
-        const validateUser = ()=>{
+        const validateUser = () => {
             for (const key in user) {
 
-                if(user[key] === ""){
+                if (user[key] === "") {
                     return true
                 }
             }
             return false
         }
 
-        if(validateUser()){
+        if (validateUser()) {
             dispatchAlert({ type: "error-visible", dataWarning: { "text": "Campos Vacios" } })
-        }else{
-            console.log("Entre aca")
+        } else {
             const response = await postLogin(user)
 
-            console.log(response)
             if (response.ok) {
                 const data = await response.json()
                 if (data.message === "OK") {
                     dispatchAlert({ type: "success-visible", dataWarning: { "text": "Success" } })
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         localStorage.setItem("token", data.token)
                         localStorage.setItem("userId", data.id)
-                        navigate(`/profile/${data.id}/desktop`)
-                    },1000)
+
+                        if (data.type) {
+                            navigate(`/admin`)
+                        } else {
+                            navigate(`/profile/${data.id}/desktop`)
+                        }
+                    }, 1000)
                 } else {
                     dispatchAlert({ type: "error-visible", dataWarning: { "text": data.message } })
                 }
-                console.log(data)
             }
         }
     }

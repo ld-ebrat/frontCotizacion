@@ -15,6 +15,28 @@ async function getInfo(token){
     return response
 }
 
+async function getAllUsers(role){
+    console.log(role)
+    const response = await fetch(`${ur}/getUsers`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({role})
+    })
+
+    return response
+}
+
+async function postUser(data){
+    const response = await fetch(`${ur}/singup`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+}
 async function postGetInfoAndCity(userId){
     const response = await fetch(`${ur}/getInfo`,{
         method: "POST",
@@ -129,6 +151,8 @@ async function postLogin(user){
 export {
     getInfo,
     getProducts,
+    getAllUsers,
+    postUser,
     postGetInfoAndCity,
     postClient,
     postQuotation,

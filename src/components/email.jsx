@@ -25,7 +25,8 @@ export default function Email({ product, total }) {
 
                     }
                     <tr>
-                        <td style={{ columnSpan: "span 2", gridColumn: "span 2", textAlign: "center"}}>Total</td>
+                        <td style={{ textAlign: "center" }}></td>
+                        <td style={{ textAlign: "end" }}>Total</td>
                         <td style={{ textAlign: "center" }}>{total}</td>
                     </tr>
                 </tbody>
