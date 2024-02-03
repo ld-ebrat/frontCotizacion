@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { getInfo, postClient, postEmail, postQuotation, postQuotationProduct } from '../peticiones'
 import { render } from '@react-email/render'
 import Email from './email'
+import { AlertContext } from '../context/AlertContex'
+import Alert from './Alert'
 
 
-function DatosClient({ products, total }) {
+function DatosClient({ products, total, display }) {
     const userId = useParams()
     const [quotationId, setQuotationId] = useState()
+    const { stateAlert, dispatchAlert } = useContext(AlertContext)
+    const location = useLocation()
 
+    useEffect(() => {
+        dispatchAlert({ type: "error-hidden", dataWarning: { "text": "Campos Vacios" } })
+    }, [])
     const {
         register,
         handleSubmit,
@@ -26,26 +33,44 @@ function DatosClient({ products, total }) {
 
     const handleClient = (data) => {
         getInfo(userId.user)
-        postClient(data, userId.user).then(response => response.json())
-            .then(data =>
-                postQuotation({ clientId: data.id, userId: userId.user, total }).then(res => res.json()
-                    .then(data => {
-                        products.forEach(elemnt => {
-                            console.log(elemnt)
-                            postQuotationProduct({ quotationId: data.id, productId: elemnt.id, amount: elemnt.count }).then(res => res.json(9))
-                                .then(data => {
-                                    postEmail(render(<Email product={products} total={total} />), data.email).then(res => res.json()).then(data => console.log(data))
-                                })
-                        })
-                    }))
-            )
+        try {
+            postClient(data, userId.user).then(response => response.json())
+                .then(dataClient =>
+                    postQuotation({ clientId: dataClient.id, userId: userId.user, total }).then(res => res.json()
+                        .then(dataQuota => {
+                            products.forEach(elemnt => {
+                                console.log(elemnt)
+                                postQuotationProduct({ quotationId: dataQuota.id, productId: elemnt.id, amount: elemnt.count }).then(res => res.json(9))
+                                    .then(dataQuotaProduct => {
+                                        postEmail(render(<Email product={products} total={total} />), data.email).then(res => res.json()).then(data => {
+                                            dispatchAlert({ type: "success-visible", dataWarning: { "text": "Cotizacion Creada Correctamente" } })
+                                            setTimeout(()=>{
+                                                window.location.reload()
+                                            },1500)
+                                        })
+                                    })
+                            })
+                        }))
+                )
+        } catch (error) {
+
+        }
+
     }
+
+    const handleClose = () => {
+        display(<></>)
+    }
+
     return (
         <>
+
             <div className='fixed item top-0 z-10 w-full h-full bg-ebrat-black bg-opacity-50'>
-                <div className='w-full h-full flex items-center justify-center'>
-                    <div className='w-1/2  pb-5 px-2 pt-2 justify-between items-center flex flex-col gap-4 bg-ebrat-335 shadow-e rounded-lg'>
-                        <div className='w-full flex justify-end'>
+                <div className=' w-full h-full flex items-center justify-center py-16'>
+                    <Alert />
+                    <div className='relative w-1/2  pb-5 px-2 pt-2 justify-between items-center flex flex-col gap-4 bg-ebrat-335 shadow-e rounded-lg'>
+
+                        <div onClick={handleClose} className='w-full flex justify-end'>
                             <img src='/images/close-g-24.png' alt='close'></img>
                         </div>
                         <div>

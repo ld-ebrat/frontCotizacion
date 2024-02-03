@@ -28,6 +28,17 @@ async function getAllUsers(role) {
     return response
 }
 
+async function getUsers(){
+    const response = await fetch(`${ur}/get-all-user`,{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+
+    return response
+}
+
 async function postUser(data) {
     const response = await fetch(`${ur}/singup`, {
         method: "POST",
@@ -154,7 +165,7 @@ async function postQuotation(dataQuotation) {
 }
 
 async function postEmail(template, email) {
-    console.log(template)
+    console.log(template, email)
     const response = await fetch(`${ur}/send/email`, {
         method: "POST",
         headers: {
@@ -201,7 +212,6 @@ async function postLogin(user) {
         body: JSON.stringify(user)
     })
 
-
     return response
 }
 
@@ -212,6 +222,7 @@ export {
     getAllUsers,
     getState,
     getCity,
+    getUsers,
     postSaveImgProfile,
     postUser,
     postValidate,

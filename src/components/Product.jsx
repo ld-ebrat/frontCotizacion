@@ -36,8 +36,6 @@ function Product() {
                 product.total = 1*product.price
                 setTotal((previosvalor)=> previosvalor + product.price)
             }
-
-            console.log(product)
         } else {
             tag.classList.add("border-ebrat-transparente")
             tag.classList.remove("bg-ebrat-150", "rounded-lg", "border-ebrat-150", "bg-opacity-10")
@@ -50,15 +48,14 @@ function Product() {
         product.count = count
         product.total = count * product.price
         setTotal(total)
-        console.log(total)
-        console.log(product)
     }
 
+    const handleDatosClient = (display)=>{
+        setQuot(display)
+    }
     const handleQuotation = ()=>{
-        console.log(products)
         if(products.filter(obj => obj.select === true).length > 0){
-            console.log(products.filter(obj => obj.select === true))
-            setQuot(<DatosClient products={products.filter(obj => obj.select === true)} total={total}/>)
+            setQuot(<DatosClient products={products.filter(obj => obj.select === true)} total={total} display={(disp)=>handleDatosClient(disp)}/>)
         }        
     }
     return (

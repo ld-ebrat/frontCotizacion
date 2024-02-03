@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate} from "react-router-dom"; /*useLocation*/ //const location = useLocation();
+import { Link, useNavigate } from "react-router-dom"; /*useLocation*/ //const location = useLocation();
 
 function NavBar() {
     const navigate = useNavigate();
@@ -45,10 +45,14 @@ function NavBar() {
                         )
                             :
                             (
-                                <div className="flex items-center justify-center">
+                                <div className="flex items-center justify-center gap-5">
+                                    <Link to={"/singup"}>
+                                        <button className={`text-lg rounded-lg w-28 h-9 bg-ebrat-310 backdrop-blur-xl text-ebrat-white`}>Sing up</button>
+                                    </Link>
                                     <Link to={"/login"}>
                                         <button className={`text-lg rounded-lg w-28 h-9 bg-ebrat-310 backdrop-blur-xl text-ebrat-white`}>Login</button>
                                     </Link>
+
                                 </div>
                             )
                     }
@@ -75,7 +79,7 @@ function NavBar() {
                                 <button>Productos</button>
                             </Link>
                         </div>
-                        <div onClick={()=>{
+                        <div onClick={() => {
                             localStorage.clear()
                             navigate("/")
                         }} className="flex  gap-3">

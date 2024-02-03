@@ -1,7 +1,25 @@
 
-import LineGraph from "../components/Graph.jsx";
+import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
+import { getUsers } from "../peticiones.js";
+import envrironment from "../environment.js";
+import { useNavigate } from "react-router-dom";
 function Home() {
+    const [users, setUsers] = useState([])
+    const [count, setCount] = useState(1)
+    const navitate = useNavigate()
+    useEffect(() => {
+        getUsers().then(res => res.json()).then(data => setUsers(data))
+    },[])
+
+    const handleUser = (event)=>{
+        navitate(`/profile/${event.currentTarget.id}`)
+        console.log(event.currentTarget)
+    }
+    const handleCount = ()=>{
+        setCount(prev => prev+1)
+        return count
+    }
     return (
         <>
             <NavBar />
@@ -17,169 +35,31 @@ function Home() {
                     </div>
                 </div>
                 <section className="h-screen w-full bg-ebrat-335">
-                    <div className="w-full text-right px-5 mb-5">
-                        <div>
-                            <button className="bg-ebrat-325 rounded-md w-24 h-10">Ver Todos</button>
-                        </div>
-                    </div>
                     <div className="flex">
-                        <div className="w-1/2 mr-3">
+                        <div className="w-full mr-3">
                             <div className="w-full px-5">
-                                <div className="flex justify-around border-b-[1px] border-ebrat-310 pb-5">
-                                    <div className="w-12 text-ebrat-305">#</div>
+                                <div className="flex justify-stat border-b-[1px] border-ebrat-310 pb-5">
                                     <div className="w-1/2 text-ebrat-305">Empresa</div>
-                                    <div className="w-1/5 text-right text-ebrat-305"># Cotizacion</div>
-                                    <div className="w-1/5 text-right text-ebrat-305">Grafico</div>
                                 </div>
                                 <div className="font-bold text-lg">
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">1</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/portatil-1.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">2</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/martillo-1.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">3</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/martillo.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">4</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">5</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/portatil-1.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="w-1/2 ml-3">
-                            <div className="w-full px-5">
-                                <div className="flex justify-around border-b-[1px] pb-5 border-ebrat-310">
-                                    <div className="w-12 text-ebrat-305">#</div>
-                                    <div className="w-1/2 text-ebrat-305">Empresa</div>
-                                    <div className="w-1/5 text-right text-ebrat-305"># Cotizacion</div>
-                                    <div className="w-1/5 text-right text-ebrat-305">Grafico</div>
-                                </div>
-                                <div className="text-lg font-bold">
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">1</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/portatil-1.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">2</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/martillo-1.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">3</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/martillo.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">4</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/" className="flex justify-around items-center pt-5">
-                                            <div className="w-12">5</div>
-                                            <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/portatil-1.jpg" alt="#"></img>
-                                                <span>Tecnologi</span>
-                                            </div>
-                                            <div className="w-1/5 text-right">100</div>
-                                            <div className="flex justify-end w-1/5 h-[50px]">
-                                                <LineGraph />
-                                            </div>
-                                        </a>
-                                    </div>
+                                    {
+                                        users.map(element => {
+                                            return (
+                                                <div key={element?.id} id={element?.id} onClick={handleUser}>
+                                                    <div className="flex justify-start items-center pt-5">
+                                                        <div className="w-1/2 flex items-center gap-5">
+                                                            <img className="shadow-f rounded-2xl w-24 h-20" src={`${envrironment.url_Back}${element?.imag}`} alt="#"></img>
+                                                            <span>{element.fullname}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </section>
             </main>
         </>
