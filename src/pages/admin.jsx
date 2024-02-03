@@ -13,7 +13,7 @@ function Admin() {
                         <button onClick={()=>navigate("/admin/Gadmin")}>Admins</button>
                     </div>
                     <div>
-                        <button>Cerrar Sesion</button>
+                        <button onClick={()=>{localStorage.clear()}}>Cerrar Sesion</button>
                     </div>
                 </section>
                 <section className="w-full">

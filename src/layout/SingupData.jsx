@@ -8,8 +8,8 @@ const SingupData = () => {
     const navigate = useNavigate()
     const [states, setStates] = useState([])
     const [cities, setCities] = useState([])
-    const { state, dispatch } = useContext(UserContext);
-    const { stateAlert, dispatchAlert } = useContext(AlertContext)
+    const { state,  } = useContext(UserContext);
+    const { dispatchAlert } = useContext(AlertContext)
     const [user, setUser] = useState({})
     const [prev, setPrev] = useState()
     const [textLength, setTextLength] = useState(0);

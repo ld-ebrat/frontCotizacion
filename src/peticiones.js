@@ -36,6 +36,8 @@ async function postUser(data){
         },
         body: JSON.stringify(data)
     })
+
+    return response
 }
 async function postGetInfoAndCity(userId){
     const response = await fetch(`${ur}/getInfo`,{
