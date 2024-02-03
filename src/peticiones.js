@@ -83,6 +83,38 @@ async function getProducts(userId) {
 
     return response
 }
+
+async function getState() {
+    const response = await fetch(`${ur}/getstate`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+    return response
+}
+
+async function getCity(idstate) {
+    const response = await fetch(`${ur}/getcity`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ stateid: idstate })
+    })
+
+    return response
+}
+
+async function postSaveImgProfile(formdata) {
+    const response = await fetch(`${ur}/save/img/profile`, {
+        method: "POST",
+        body: formdata
+    })
+
+    return response
+}
 async function postProduct(product) {
     const response = await fetch(`${ur}/create/product`, {
         method: "POST",
@@ -147,6 +179,17 @@ async function postQuotationProduct(data) {
     return response
 }
 
+async function postSingUp(user) {
+    const responseCreate = await fetch(`${ur}/singup`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
+
+    return responseCreate
+}
 async function postLogin(user) {
     console.log(user)
     const response = await fetch(`${ur}/login`, {
@@ -166,12 +209,16 @@ export {
     getInfo,
     getProducts,
     getAllUsers,
+    getState,
+    getCity,
+    postSaveImgProfile,
     postUser,
     postValidate,
     postGetInfoAndCity,
     postClient,
     postQuotation,
     postQuotationProduct,
+    postSingUp,
     postLogin,
     postEmail,
     postImgProduct,

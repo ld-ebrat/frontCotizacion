@@ -3,6 +3,7 @@ import { UserContext } from '../context/UserContex';
 import Alert from '../components/Alert';
 import { AlertContext } from '../context/AlertContex';
 import { useNavigate } from 'react-router-dom';
+import { getCity, getState, postSaveImgProfile, postSingUp } from '../peticiones';
 
 const SingupData = () => {
     const navigate = useNavigate()
@@ -18,23 +19,7 @@ const SingupData = () => {
         if (Object.keys(state.user).length === 0) {
             navigate("/singup")
         }
-        const funFetch = async () => {
-            try {
-                const response = await fetch("http://localhost:4000/getstate", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                if (response.ok) {
-                    const data = await response.json()
-                    setStates(data)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        funFetch()
+        getState().then(res => res.json()).then(data => setStates(data))
         dispatchAlert({ type: "error-hidden", dataWarning: { "text": "Campos Vacios" } })
     }, [])
     
@@ -61,13 +46,8 @@ const SingupData = () => {
     async function stateSelec(event) {
         const idstate = event.target.selectedOptions[0].getAttribute("data-id")
         try {
-            const response = await fetch("http://localhost:4000/getcity", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ stateid: idstate })
-            })
+
+            const response = await getCity(idstate)
             if (response.ok) {
                 const data = await response.json()
                 setCities(data)
@@ -99,22 +79,13 @@ const SingupData = () => {
                 formdata.append("file", user.imgSelect)
                 formdata.append("user", user.email)
                 try {
-                    const response = await fetch("http://localhost:4000/save/img/profile", {
-                        method: "POST",
-                        body: formdata
-                    })
+                    const response = await postSaveImgProfile(formdata)
                     
                     if (response.ok) {
                         const data = await response.json()
                         if (data.url) {
                             user.imgSelect = data.url
-                            const responseCreate = await fetch("http://localhost:4000/singup", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify(user)
-                            })
+                            const responseCreate = await postSingUp(user)
 
                             if (responseCreate.ok) {
                                 const data = await responseCreate.json()
