@@ -190,6 +190,7 @@ async function postSingUp(user) {
 
     return responseCreate
 }
+
 async function postLogin(user) {
     console.log(user)
     const response = await fetch(`${ur}/login`, {
@@ -197,7 +198,7 @@ async function postLogin(user) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify({user})
     })
 
 
