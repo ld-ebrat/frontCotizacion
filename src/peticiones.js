@@ -2,9 +2,9 @@ import envrironment from "./environment"
 
 const ur = envrironment.url_Back
 
-async function getInfo(token){
+async function getInfo(token) {
     console.log(token)
-    const response = await fetch(`${ur}/get-infoUser`,{
+    const response = await fetch(`${ur}/get-infoUser`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -15,20 +15,20 @@ async function getInfo(token){
     return response
 }
 
-async function getAllUsers(role){
+async function getAllUsers(role) {
     console.log(role)
-    const response = await fetch(`${ur}/getUsers`,{
+    const response = await fetch(`${ur}/getUsers`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({role})
+        body: JSON.stringify({ role })
     })
 
     return response
 }
 
-async function postUser(data){
+async function postUser(data) {
     const response = await fetch(`${ur}/singup`, {
         method: "POST",
         headers: {
@@ -39,13 +39,25 @@ async function postUser(data){
 
     return response
 }
-async function postGetInfoAndCity(userId){
-    const response = await fetch(`${ur}/getInfo`,{
+
+async function postValidate(email) {
+    const response = await fetch(`${ur}/validateUser`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({userId})
+        body: JSON.stringify({ email: email })
+    })
+
+    return response
+}
+async function postGetInfoAndCity(userId) {
+    const response = await fetch(`${ur}/getInfo`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userId })
     })
 
     return response
@@ -60,13 +72,13 @@ async function postImgProduct(formdata) {
     return response
 }
 
-async function getProducts(userId){
-    const response = await fetch(`${ur}/get/products`,{
+async function getProducts(userId) {
+    const response = await fetch(`${ur}/get/products`, {
         method: "POST",
-        headers:{
+        headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({userId})
+        body: JSON.stringify({ userId })
     })
 
     return response
@@ -83,9 +95,9 @@ async function postProduct(product) {
     return response
 }
 
-async function postClient(dataClient, userId){
+async function postClient(dataClient, userId) {
     dataClient.userId = userId
-    const response = await fetch(`${ur}/create/client`,{
+    const response = await fetch(`${ur}/create/client`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -96,9 +108,9 @@ async function postClient(dataClient, userId){
     return response
 }
 
-async function postQuotation(dataQuotation){
+async function postQuotation(dataQuotation) {
     console.log(dataQuotation)
-    const response = await fetch(`${ur}/create/quotation`,{
+    const response = await fetch(`${ur}/create/quotation`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -109,22 +121,22 @@ async function postQuotation(dataQuotation){
     return response
 }
 
-async function postEmail(template){
+async function postEmail(template) {
     console.log(template)
-    const response = await fetch(`${ur}/send/email`,{
+    const response = await fetch(`${ur}/send/email`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({html: template})
+        body: JSON.stringify({ html: template })
     })
 
     return response
 }
 
-async function postQuotationProduct(data){
+async function postQuotationProduct(data) {
     console.log(data)
-    const response = await fetch(`${ur}/create/quotationProducts`,{
+    const response = await fetch(`${ur}/create/quotationProducts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -135,9 +147,9 @@ async function postQuotationProduct(data){
     return response
 }
 
-async function postLogin(user){
+async function postLogin(user) {
     console.log(user)
-    const response = await fetch(`${ur}/login`,{
+    const response = await fetch(`${ur}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -155,6 +167,7 @@ export {
     getProducts,
     getAllUsers,
     postUser,
+    postValidate,
     postGetInfoAndCity,
     postClient,
     postQuotation,
