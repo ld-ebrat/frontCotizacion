@@ -75,7 +75,7 @@ function Home() {
                                         <a href="/" className="flex justify-around items-center pt-5">
                                             <div className="w-12">4</div>
                                             <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/man-1.png" alt="#"></img>
+                                                <img className="shadow-f rounded-2xl w-24 h-20" src="" alt="#"></img>
                                                 <span>Tecnologi</span>
                                             </div>
                                             <div className="w-1/5 text-right">100</div>
@@ -153,7 +153,7 @@ function Home() {
                                         <a href="/" className="flex justify-around items-center pt-5">
                                             <div className="w-12">4</div>
                                             <div className="w-1/2 flex items-center gap-5">
-                                                <img className="shadow-f rounded-2xl w-24 h-20" src="images/man-1.png" alt="#"></img>
+                                                <img className="shadow-f rounded-2xl w-24 h-20" src="" alt="#"></img>
                                                 <span>Tecnologi</span>
                                             </div>
                                             <div className="w-1/5 text-right">100</div>
@@ -187,72 +187,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
-/**
-style={{backgroundImage:`url('images/portatil-1.jpg')`}}
-
-
-
- * <>
-            <div className="z-10 flex w-full flex-wrap pr-12 pl-12 gap-9">
-                <div className="flex flex-col justify-center items-center w-72 border border-ebrat-black rounded-md bg-cover">
-                    <section className="w-72 h-2/3 ml-1 mr-1 border border-y-0 z-10 flex justify-center flex-col items-center bg-ebrat-white bg-gray-700 shadow-ebrat-black shadow-md rounded-b-3xl rounded-t-md">
-                        <img src="images/man-1.png" alt="empresa"></img>
-                        <h6>Nombre empresa</h6>
-                    </section>
-                    <section className=" pt-2 flex w-72 h-1/3 border border-y-0 rounded-b-md">
-                        <ol className="text-base flex  justify-center gap-2 flex-wrap w-72 pr-3 pl-3 list-disc list-inside">
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                        </ol>
-                    </section>
-                </div>
-                <div className="flex flex-col justify-center items-center w-72 bg-ebrat-gray border border-ebrat-black rounded-md">
-                    <section className="w-72 h-2/3 ml-1 mr-1 border border-y-0 z-10 flex justify-center flex-col items-center bg-ebrat-white bg-gray-700 shadow-ebrat-black shadow-md rounded-b-3xl rounded-t-md">
-                        <img src="images/man-1.png" alt="empresa"></img>
-                        <h6>Nombre empresa</h6>
-                    </section>
-                    <section className="pt-2 flex w-72 h-1/3 border border-y-0 rounded-b-md">
-                        <ol className="text-base flex  justify-center gap-2 flex-wrap w-72 pr-3 pl-3 list-disc list-inside">
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                        </ol>
-                    </section>
-                </div>
-                <div className="flex flex-col justify-center items-center w-72 h-48 bg-ebrat-gray border border-ebrat-black rounded-md">
-                    <section className="w-72 h-2/3 ml-1 mr-1 border border-y-0 z-10 flex justify-center flex-col items-center bg-ebrat-white bg-gray-700 shadow-ebrat-black shadow-md rounded-b-3xl rounded-t-md">
-                        <img src="images/man-1.png" alt="empresa"></img>
-                        <h6>Nombre empresa</h6>
-                    </section>
-                    <section className="pt-2 flex w-72 h-1/3 border border-y-0 rounded-b-md">
-                        <ol className="text-base flex  justify-center gap-2 flex-wrap w-72 pr-3 pl-3 list-disc list-inside">
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                        </ol>
-                    </section>
-                </div>
-                <div className="flex flex-col justify-center items-center w-72 h-48 bg-ebrat-gray border border-ebrat-black rounded-md">
-                    <section className="w-72 h-2/3 ml-1 mr-1 border border-y-0 z-10 flex justify-center flex-col items-center bg-ebrat-white bg-gray-700 shadow-ebrat-black shadow-md rounded-b-3xl rounded-t-md">
-                        <img src="images/man-1.png" alt="empresa"></img>
-                        <h6>Nombre empresa</h6>
-                    </section>
-                    <section className="pt-2 flex w-72 h-1/3 border border-y-0 rounded-b-md">
-                        <ol className="text-base flex  justify-center gap-2 flex-wrap w-72 pr-3 pl-3 list-disc list-inside">
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                            <li>martillo</li>
-                        </ol>
-                    </section>
-                </div>
-            </div>
-        </>
- */
