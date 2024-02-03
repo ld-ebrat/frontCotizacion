@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { postImgProduct, postProduct } from '../peticiones'
+import { getInfo, postImgProduct, postProduct } from '../peticiones'
 import { AlertContext } from '../context/AlertContex'
 import Alert from '../components/Alert'
 
@@ -14,14 +14,7 @@ function ProductCU() {
     useEffect(() => {
         if (localStorage.getItem("token")) {
 
-            fetch("http://localhost:4000/get-infoUser", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    'authorization': localStorage.getItem("token")
-                }
-            })
-                .then(response => response.json())
+            getInfo(localStorage.getItem("token")).then(response => response.json())
                 .then(data => setUser(data))
                 .catch(error => { console.log("Ocurrio un error en la peticion", error) })
         }
@@ -71,22 +64,13 @@ function ProductCU() {
 
                 const responseProduct = await postProduct(product)
 
-                if(responseProduct.status === 200){
+                if (responseProduct.status === 200) {
                     dispatchAlert({ type: "success-visible", dataWarning: { "text": "Producto Guardado Correctamente" } })
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         dispatchAlert({ type: "success-hidden", dataWarning: { "text": "Producto Guardado Correctamente" } })
                     }, 2000)
                 }
-                // fetch("http://localhost:4000/create/product", {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify(product)
-                // })
-                //     .then(response => response.json())
-                //     .then(data => { console.log("Todo guardado Correctamente", data) })
-                //     .catch(error => { console.log("A ocurrido un erro: ", error) })
+
             }
         } catch (error) {
             console.log(error)
