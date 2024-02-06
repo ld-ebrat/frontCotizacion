@@ -8,7 +8,7 @@ async function getInfo(token) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            'authorization': token
+            'Authorization': token
         }
     })
     console.log("retorno bien")
