@@ -2,7 +2,6 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ld-ebrat.github.io/frontCotizacion",
   "dependencies": {
     "@react-email/components": "^0.0.14",
     "@testing-library/jest-dom": "^5.17.0",
@@ -22,11 +21,10 @@
     "react-hook-form": "^7.50.0",
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
+    "vercel": "^33.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy" : "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
