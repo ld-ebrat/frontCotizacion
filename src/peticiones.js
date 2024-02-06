@@ -3,7 +3,7 @@ import envrironment from "./environment"
 const ur = envrironment.url_Back
 
 async function getInfo(token) {
-    console.log(token)
+    console.log("Entre")
     const response = await fetch(`${ur}/get-infoUser`, {
         method: "GET",
         headers: {
@@ -11,25 +11,23 @@ async function getInfo(token) {
             'authorization': token
         }
     })
-
+    console.log("retorno bien")
     return response
 }
 
-async function getAllUsers(role) {
-    console.log(role)
+async function getAllUsers() {
     const response = await fetch(`${ur}/getUsers`, {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ role })
     })
 
     return response
 }
 
-async function getUsers(){
-    const response = await fetch(`${ur}/get-all-user`,{
+async function getUsers() {
+    const response = await fetch(`${ur}/get-all-user`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -152,7 +150,6 @@ async function postClient(dataClient, userId) {
 }
 
 async function postQuotation(dataQuotation) {
-    console.log(dataQuotation)
     const response = await fetch(`${ur}/create/quotation`, {
         method: "POST",
         headers: {
@@ -165,7 +162,6 @@ async function postQuotation(dataQuotation) {
 }
 
 async function postEmail(template, email) {
-    console.log(template, email)
     const response = await fetch(`${ur}/send/email`, {
         method: "POST",
         headers: {
@@ -178,7 +174,6 @@ async function postEmail(template, email) {
 }
 
 async function postQuotationProduct(data) {
-    console.log(data)
     const response = await fetch(`${ur}/create/quotationProducts`, {
         method: "POST",
         headers: {

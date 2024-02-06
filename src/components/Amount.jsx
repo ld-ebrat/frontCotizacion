@@ -6,7 +6,6 @@ function Amount({ onChangeAmount, productId, total, price }) {
     const [totalPay, setTotalPay] = useState(total)
     useEffect(() => {
         if (onChangeAmount) {
-            console.log(totalPay)
             onChangeAmount(count, productId, totalPay)
         }
     }, [count])

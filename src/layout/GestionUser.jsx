@@ -13,16 +13,16 @@ function GestionUser() {
     function onnn(event) {
         const tr = event.target.closest('tr')
         var description = users.find(obj => obj.id === tr.children[0].innerText)
-            setUserSelect({
-                "id":tr.children[0].innerText,
-                "name":tr.children[1].innerText,
-                "role":tr.children[2].innerText,
-                "email":tr.children[3].innerText,
-                "pass":tr.children[4].innerText,
-                "phone":tr.children[5].innerText,
-                "address":tr.children[6].innerText,
-                "description": description.description
-            })
+        setUserSelect({
+            "id": tr.children[0].innerText,
+            "name": tr.children[1].innerText,
+            "role": tr.children[2].innerText,
+            "email": tr.children[3].innerText,
+            "pass": tr.children[4].innerText,
+            "phone": tr.children[5].innerText,
+            "address": tr.children[6].innerText,
+            "description": description.description
+        })
 
     }
     return (
@@ -87,8 +87,8 @@ function GestionUser() {
                                 <th className="border">Rol</th>
                                 <th className="border">Correo</th>
                                 <th className="border">Contraseña</th>
-                                <th className="border">Telefono</th>
-                                <th className="border">Ubicacion</th>
+                                <th className="border">Actualizar</th>
+                                <th className="border">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,8 +101,16 @@ function GestionUser() {
                                             <td className="border text-center">{element?.role}</td>
                                             <td className="border text-center">{element?.email}</td>
                                             <td className="border text-center">{element?.password}</td>
-                                            <td className="border text-center">{element?.phone}</td>
-                                            <td className="border text-center">{element?.address}</td>
+                                            <td className="border text-center">
+                                                <button className='flex items-center justify-center w-8 h-8 rounded-lg bg-ebrat-120'>
+                                                    <img src='/images/edit-w-24.png' alt='edit-Produt'></img>
+                                                </button>
+                                            </td>
+                                            <td className="border text-center">
+                                                <button className='flex items-center justify-center w-8 h-8 rounded-lg bg-hunt-2.2'>
+                                                    <img src='/images/close-w-24.png' alt='delete-Product'></img>
+                                                </button>
+                                            </td>
                                         </tr>
                                     )
                                 })

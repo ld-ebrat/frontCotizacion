@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useForm } from "react-hook-form"
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getInfo, postClient, postEmail, postQuotation, postQuotationProduct } from '../peticiones'
 import { render } from '@react-email/render'
 import Email from './email'
@@ -10,13 +10,11 @@ import Alert from './Alert'
 
 function DatosClient({ products, total, display }) {
     const userId = useParams()
-    const [quotationId, setQuotationId] = useState()
-    const { stateAlert, dispatchAlert } = useContext(AlertContext)
-    const location = useLocation()
+    const { dispatchAlert } = useContext(AlertContext)
 
     useEffect(() => {
         dispatchAlert({ type: "error-hidden", dataWarning: { "text": "Campos Vacios" } })
-    }, [])
+    },[dispatchAlert])
     const {
         register,
         handleSubmit,
@@ -39,7 +37,6 @@ function DatosClient({ products, total, display }) {
                     postQuotation({ clientId: dataClient.id, userId: userId.user, total }).then(res => res.json()
                         .then(dataQuota => {
                             products.forEach(elemnt => {
-                                console.log(elemnt)
                                 postQuotationProduct({ quotationId: dataQuota.id, productId: elemnt.id, amount: elemnt.count }).then(res => res.json(9))
                                     .then(dataQuotaProduct => {
                                         postEmail(render(<Email product={products} total={total} />), data.email).then(res => res.json()).then(data => {

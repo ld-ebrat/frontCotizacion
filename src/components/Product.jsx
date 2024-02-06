@@ -14,9 +14,6 @@ function Product() {
     useEffect(() => {
         getProducts(userId.user).then(response => response.json()).then(data => setProducts(data))
     }, [userId])
-    useEffect(()=>{
-        console.log(total)
-    },[total])
 
     function handleCheck(event) {
         const contParent = event.target.parentElement
