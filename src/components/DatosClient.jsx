@@ -15,6 +15,7 @@ function DatosClient({ products, total, display }) {
     useEffect(() => {
         dispatchAlert({ type: "error-hidden", dataWarning: { "text": "Campos Vacios" } })
     },[dispatchAlert])
+    
     const {
         register,
         handleSubmit,

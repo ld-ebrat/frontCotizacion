@@ -1,51 +1,33 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { getInfo } from '../peticiones'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { getInfo, getInfoUser } from '../peticiones'
+import { Navigate, useNavigate } from 'react-router-dom'
 import Admin from '../pages/admin'
-import { Navigate } from 'react-router-dom'
 
-export default function ProtectRouterAdmin() {
+function ProtectRouterAdmin() {
+
     const token = localStorage.getItem("token")
-    const [user, setUser] = useState({})
-    const [navigate, setNavitate] = useState()
-    const handle = useCallback( async () => {
-        console.log("Entre si claro que si")
-        getInfo(token).then(res => {
-            if (res.ok) {
-                res.json()
-            } else {
-                console.log("Error en la peticion get")
-            }
-        }).then(data => {
-            console.log(data)
-        }).catch(err => console.log(err))
+    const [navigat, setNavigat] = useState(<></>)
+    useEffect(()=>{
+        if(token){
+            getInfo(token).then(res => res.json()).then(data => {
+                if(data.role === "ADMIN"){
+                    console.log("Entre aqui")
+                    setNavigat(<Admin/>)
+                }else{
+                    console.log("No, entre aca")
+                    setNavigat(<Navigate to={"/"} replace/>)
+                }
+            })
+        }else{
+            setNavigat(<Navigate to={"/"}/>)
+        }
     },[token])
 
-    useEffect(() => {
-
-        if (token) {
-            handle()
-        }else{
-            setNavitate(<Navigate to={"/"} replace />)
-        }
-    }, [])
-
-    const handdlePeticion = () => {
-        if (token) {
-            getInfo(token).then(res => {
-                if (res.ok) {
-                    res.json()
-                } else {
-                    console.log("Error en la peticion get")
-                }
-            }).then(data => {
-                console.log(data)
-            }).catch(err => console.log(err))
-        } else {
-            setNavitate(<Navigate to={"/"} replace />)
-        }
-    }
     return (
-        navigate
+        navigat
     )
-
 }
+
+export default ProtectRouterAdmin
+

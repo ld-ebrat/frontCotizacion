@@ -12,6 +12,8 @@ import Product from "./components/Product";
 import ProtectRouterDesktop from "./components/ProtectRouterDesktop";
 import ProtectRouterProfile from "./components/ProtectRouterProfile";
 import ProtectRouterAdmin from "./components/ProtectRouterAdmin";
+import UserCreate from "./layout/userCU";
+import TableGestionAdmin from "./components/tableGestionAdmin";
 
 const router = createBrowserRouter([
     {
@@ -67,12 +69,27 @@ const router = createBrowserRouter([
             {
                 path: "/admin/Guser",
                 Component: GestionUser,
+                children: [
+                    {
+                        path: "/admin/Guser",
+                        Component: TableGestionAdmin
+                    },
+                    {
+                        path: "/admin/Guser/create",
+                        Component: UserCreate
+                    },
+                    {
+                        path: "/admin/Guser/update",
+                        Component: UserCreate
+                    }
+                ]
             },
             {
                 path: "/admin/Gadmin",
                 Component: GestionAdmin
             }
         ]
+
     }
 ])
 

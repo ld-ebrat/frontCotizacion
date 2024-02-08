@@ -3,15 +3,15 @@ import envrironment from "./environment"
 const ur = envrironment.url_Back
 
 async function getInfo(token) {
-    console.log("Entre")
     const response = await fetch(`${ur}/get-infoUser`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            'Authorization': token
+            'authorization': token,
+            "Access-Control-Allow-Origin": "*",
+            "X-Powered-By": "Express"
         }
     })
-    console.log("retorno bien")
     return response
 }
 
@@ -124,6 +124,27 @@ async function postSaveImgProfile(formdata) {
 
     return response
 }
+
+async function putUpdateImgProfile(formdata){
+    const response = await fetch(`${ur}/update/img/profile`,{
+        method: "PUT",
+        body: formdata
+    })
+
+    return response
+}
+
+async function updateDir(data){
+    const response = await fetch(`${ur}/rename/dir/profile`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+
+    return response
+}
 async function postProduct(product) {
     const response = await fetch(`${ur}/create/product`, {
         method: "POST",
@@ -185,6 +206,30 @@ async function postQuotationProduct(data) {
     return response
 }
 
+async function postCreateUser(user, urlImg){
+    console.log(user)
+    const response = await fetch(`${ur}/create/user`, {
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({user, urlImg})
+    })
+
+    return response
+}
+
+async function putUser(user, urlImg){
+    const response = await fetch(`${ur}/update/user`,{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({user, urlImg})
+    })
+
+    return response
+}
 async function postSingUp(user) {
     const responseCreate = await fetch(`${ur}/singup`, {
         method: "POST",
@@ -225,10 +270,13 @@ export {
     postClient,
     postQuotation,
     postQuotationProduct,
+    postCreateUser,
     postSingUp,
     postLogin,
     postEmail,
     postImgProduct,
     postProduct,
-
+    putUser,
+    putUpdateImgProfile,
+    updateDir
 }
