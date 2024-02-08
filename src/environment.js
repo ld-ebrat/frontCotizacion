@@ -1,6 +1,6 @@
 
 const envrironment = {
-    url_Back : "https://back-quotation.onrender.com"
+    url_Back : "https://back-cotizacion.vercel.app/"
 }
 
 //https://back-quotation.onrender.com
