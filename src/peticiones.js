@@ -93,6 +93,18 @@ async function getProducts(userId) {
     return response
 }
 
+async function putUrlProducts(usersId){
+    const response = await fetch(`${ur}/update/url/product`,{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(usersId)
+    })
+
+    return response
+}
+
 async function getState() {
     const response = await fetch(`${ur}/getstate`, {
         method: "GET",
@@ -278,5 +290,6 @@ export {
     postProduct,
     putUser,
     putUpdateImgProfile,
+    putUrlProducts,
     updateDir
 }

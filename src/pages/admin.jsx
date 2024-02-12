@@ -25,7 +25,7 @@ function Admin() {
                         }}>Cerrar Sesion</button>
                     </div>
                 </section>
-                <section className="w-full py-5 px-5">
+                <section className="w-full py-5 px-5 relative overflow-hidden">
                     <Outlet />
                 </section>
             </main>

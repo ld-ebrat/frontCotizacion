@@ -33,7 +33,7 @@ function TableGestionAdmin() {
                         <button className="border border-ebrat-310 w-24 h-10 rounded-lg">Crear</button>
                     </div>
                 </div>
-                <div className="w-11/12 max-h-56 overflow-y-auto">
+                <div className="w-11/12 max-h-full overflow-y-auto">
                     <table className="border-collapse table-auto border w-full">
                         <thead>
                             <tr>
